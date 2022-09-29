@@ -87,6 +87,7 @@ h1 {color: lightgray;
     border-radius: 10px;
     min-height: 80px;
     margin:0px;
+    padding:0px;
     }
 
 .btn-BW{
@@ -107,17 +108,18 @@ h1 {color: lightgray;
     border-radius: 10px;
     border: 3px solid black;}
 
-#submit-save-button {
-    top: 5px;
-    right: 5px}
+#submit-save-button {}
 
 #submit-save-button:hover{
     font-size: 30px;}
-
+#update-palette-button{
+    right: 5px;
+}
 #palette-form {
     height: fit-content;
     font-size: 30px;
-    margin: 0px;}
+    margin: 0px;
+    padding: 0px;}
 
 #palette-container{
     background-color: white;

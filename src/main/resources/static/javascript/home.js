@@ -42,12 +42,17 @@ for (let i=0; i<swatch.length; i++){
 }
 
 // ************  old Code *************
+
 const handleSubmit = async (e) => {
     e.preventDefault()
     let bodyObj = {
-        body: document.getElementById("palette-input").value}
+        // body: document.getElementById("palette-input").value}
+
+    body: document.getElementById("palette-container").value}
+
     await addPalette(bodyObj);
-    document.getElementById("palette-input").value = ''}
+    document.getElementById("palette-container").value = ''}
+
 
 async function addPalette(obj) {
     const response = await fetch(`${baseUrl}user/${userId}`, {

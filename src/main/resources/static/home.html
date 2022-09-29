@@ -13,7 +13,7 @@
 </head>
 
 <body>
-<!-- The login Modal.... this will be for LOGIN, note id = loginModal-->
+<!-- The login Modal.... this is for LOGIN,  ** id = loginModal **-->
 <div class="modal" id="loginModal">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -44,7 +44,7 @@
     </div>
 </div>
 
-<!--The Register Modal ... this is for REGISTER, note id = registerModal-->
+<!--The Register Modal ... this is for REGISTER, ** id = registerModal ** -->
 <div class="modal" id="registerModal">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -78,7 +78,7 @@
 
 
 
-
+<!--top of the webpage -->
 <div class = "container-fluid border my-3 mx-3" id="PickAPalette">
     <div class = "row align-items-start">
         <div class= "col-8" id ="title">
@@ -92,10 +92,10 @@
     </div>
 
 
-    <!--palette container, has a text area with SAVE button and below that, a palette area -->
+<!--container for all the palettes, has a text area with SAVE button and below that, palette areas -->
     <div class="container-fluid sticky-top my-3 row align-items-start" id="palette-intro-form-container">
 
-<!--   modal for saved palette starts here.  add the words "modal fade" to class on next line-->
+<!--   modal for saved palette starts here.  Molly: add the words "modal fade" to class on next line-->
     <div class = "my-1"  id="palette-edit-modal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="palette-edit-modal-title" aria-hidden="true">
 
         <div class = "savedPalette row my-3">
@@ -105,18 +105,19 @@
             </div>
 
             <div class = "col-3 my-3">
-                <button id="update-palette-button" type="submit" class="btn btn-BW" >UPDATE</button>
+                <button id="update-palette-button" type="submit" class="btn btn-BW " >UPDATE</button>
             </div>
 
-            <!--palette container is the area where selections appear-->
+            <!--palette-container is the area where selections appear-->
             <div id="saved-palette-container" class="container-fluid modal-body">
 
                 <textarea class="form-control" rows ="2" id="palette-body"></textarea>
 
-<!--                there are two data buckets up there ^^^ -->
+<!--                this is from the Notes App.  Might not work here ^^^ -->
             </div>
         </div>
     </div>
+
 <!--  active palette starts here-->
     <form id="palette-form" >
         <div id="active-palette" class = "row my-1 mx-0">
@@ -128,8 +129,11 @@
             <div class = "col-2 my-3">
                 <button id="submit-save-button" type="submit" class="btn btn-BW" >SAVE</button>
             </div>
-        <!--palette container is the area where selections appear-->
-            <div id="palette-container" class="container-fluid "></div>
+        <!--palette-container is the area where selections appear-->
+            <div id="palette-container" class="container-fluid ">
+<!--                <textarea class="form-control" id="palette-input"></textarea>-- also deleted "form-group" from class-->
+
+            </div>
         </div>
     </form>
 
