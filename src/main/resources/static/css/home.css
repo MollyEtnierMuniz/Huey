@@ -1,0 +1,155 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-weight: inherit;
+    font-style: inherit;
+    font-size: 100%;
+    font-family: inherit;
+    vertical-align: baseline;
+}
+/* remember to define focus styles! */
+:focus {
+    outline: 0;
+}
+body {
+    line-height: 1;
+    color: black;
+    background: white;
+}
+ol, ul {
+    list-style: none;
+}
+/* tables still need 'cellspacing="0"' in the markup */
+table {
+    border-collapse: separate;
+    border-spacing: 0;
+}
+caption, th, td {
+    text-align: left;
+    font-weight: normal;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content: "";
+}
+blockquote, q {
+    quotes: "" "";
+}
+
+
+
+
+
+
+#PickAPalette{
+    background-color: black;
+    border-radius:10px;
+    }
+
+.sticky-top {
+    font-family: "Helvetica Neue";
+    background-color: purple;
+    border-radius: 10px;
+    height: fit-content;
+    border: 5px solid black;
+    margin-left: 0px;
+    margin-right: 5px;
+    padding-left: 0px;
+    padding-right: 10px;
+}
+
+h1 {color: lightgray;
+    font-size: 30px;
+    font-family: "Helvetica Neue"}
+
+#intro{
+    font-size: 25px;
+    min-height: 80px;}
+
+#palette-edit-modal{
+    background-color: lightgray;
+    border-radius: 10px;
+    font-size: 25px;
+    min-height: 40px;
+    margin: 0px}
+
+#active-palette{
+    background-color: lightgray;
+    border-radius: 10px;
+    min-height: 80px;
+    margin:0px;
+    }
+
+.btn-BW{
+    font-family: "Helvetica Neue";
+    background-color: white;
+    border: 3px solid black;
+    color: black;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 25px;
+    letter-spacing:2px;
+}
+
+.modal-content{
+    font-family: "Helvetica Neue";
+    background-color: lightgray;
+    font-size: 25px;
+    border-radius: 10px;
+    border: 3px solid black;}
+
+#submit-save-button {
+    top: 5px;
+    right: 5px}
+
+#submit-save-button:hover{
+    font-size: 30px;}
+
+#palette-form {
+    height: fit-content;
+    font-size: 30px;
+    margin: 0px;}
+
+#palette-container{
+    background-color: white;
+}
+
+.btn-swatch {
+    font-family: Courier;
+    font-size: 1px;
+    line-height: 16px;
+    border-radius: 10px;
+    margin-left: 1px;
+    margin-right: 1px;
+    margin-bottom: 1px;
+    margin-bottom: 1px;
+    color: transparent;}
+
+.btn-swatch:hover {
+    transition: all .5s ;
+    border: 4px solid ;
+    font-size:20px;
+    max-width: 80px;
+    color: black;
+    line-height:40px;
+    position: absolute;
+    padding-left: 1px;
+    padding-right: 1px;
+    font-family: "Arial Narrow"}
+
+
+#btn-logout {
+    bottom: 5px;
+    right: 15px;}
+
+#btn-logout:hover {
+    font-size: 30px;}

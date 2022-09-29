@@ -1,0 +1,1239 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+          rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+          crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/home.css" type="text/css">
+    <title>Home</title>
+</head>
+
+<body>
+<!-- The login Modal.... this will be for LOGIN, note id = loginModal-->
+<div class="modal" id="loginModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- login Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Please log in.</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <!-- login Modal body, Login functionality is here-->
+            <div class="modal-body">
+                <form id="login-form" >
+                    <div class="form-group">
+                        <label for="login-username">Username</label>
+                        <input type="text" class="form-control" id="login-username" >
+                    </div>
+                    <div class="form-group">
+                        <label for="login-password">Password</label>
+                        <input type="password" class="form-control" id="login-password" >
+                    </div>
+
+            <!-- login Modal footer, contains "LOGIN" button -->
+            <div class="modal-footer">
+                <button id="submit-login-button" type="submit" class="btn btn-BW">LOGIN</button>
+            </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--The Register Modal ... this is for REGISTER, note id = registerModal-->
+<div class="modal" id="registerModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- register Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title ">Please register.</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <!-- register Modal body.  the submit button works-->
+            <div class="modal-body">
+                <form id="register-form">
+                    <div class="form-group">
+                        <label for="register-username">Username</label>
+                        <input type="text" class="form-control" id="register-username">
+                    </div>
+                    <div class="form-group">
+                        <label for="register-password">Password</label>
+                        <input type="password" class="form-control" id="register-password" >
+                    </div>
+<!--            </div>-->
+            <!-- register Modal footer, contains "register" button-->
+            <div class="modal-footer">
+                <button id="submit-registration-button" type="submit" class="btn btn-BW">REGISTER</button>
+            </div>
+            </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!--register Modal code ends here -->
+
+
+
+
+<div class = "container-fluid border my-3 mx-3" id="PickAPalette">
+    <div class = "row align-items-start">
+        <div class= "col-8" id ="title">
+            <h1>Pick a Palette</h1>
+        </div>
+
+        <div class = "btn-group col-4">
+            <button id= "login-button" type="button" class="btn btn-BW" data-bs-toggle="modal" data-bs-target="#loginModal">LOGIN</button>
+            <button id="register-button" type="button" class="btn btn-BW" data-bs-toggle="modal" data-bs-target="#registerModal">REGISTER</button>
+        </div>
+    </div>
+
+
+    <!--palette container, has a text area with SAVE button and below that, a palette area -->
+    <div class="container-fluid sticky-top my-3 row align-items-start" id="palette-intro-form-container">
+
+<!--   modal for saved palette starts here.  add the words "modal fade" to class on next line-->
+    <div class = "my-1"  id="palette-edit-modal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="palette-edit-modal-title" aria-hidden="true">
+
+        <div class = "savedPalette row my-3">
+
+            <div class= "col-9" id ="saved-Palette">
+                Saved palette name??
+            </div>
+
+            <div class = "col-3 my-3">
+                <button id="update-palette-button" type="submit" class="btn btn-BW" >UPDATE</button>
+            </div>
+
+            <!--palette container is the area where selections appear-->
+            <div id="saved-palette-container" class="container-fluid modal-body">
+
+                <textarea class="form-control" rows ="2" id="palette-body"></textarea>
+
+<!--                there are two data buckets up there ^^^ -->
+            </div>
+        </div>
+    </div>
+<!--  active palette starts here-->
+    <form id="palette-form" >
+        <div id="active-palette" class = "row my-1 mx-0">
+
+            <div class= "col-10" id ="intro">
+                Click on the colors of your choice. Your selections will appear here.  When finished, click the "Save" button.
+            </div>
+
+            <div class = "col-2 my-3">
+                <button id="submit-save-button" type="submit" class="btn btn-BW" >SAVE</button>
+            </div>
+        <!--palette container is the area where selections appear-->
+            <div id="palette-container" class="container-fluid "></div>
+        </div>
+    </form>
+
+
+
+<!--sticky top ends here-->
+</div>
+
+
+
+    <!--swatch container-->
+    <div class = "row">
+        <div class="btn-group-toggle">
+            <button type="button"  class="btn btn-swatch btn-lg" style="background-color:#F9E300">F9E300</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#F3EC7A">F3EC7A</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#F5EC5A">F5EC5A</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#FAE700">FAE700</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#FEDF00">FEDF00</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#C6AC00">C6AC00</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#AE9A00">AE9A00</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#867A24">867A24</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#F7E654">F7E654</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#F9E11E">F9E11E</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#FCD900">FCD900</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#FED100">FED100</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#D7A900">D7A900</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#AB8D00">AB8D00</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#968000">968000</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#F8E04D">F8E04D</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#F9DE42">F9DE42</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#FADC41">FADC41</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#FECB00">FECB00</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#C79900">C79900</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#AD8800">AD8800</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#86731E">86731E</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#F8DE6E">F8DE6E</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#FADA63">FADA63</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#FCD450">FCD450</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#FDC82F">FDC82F</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#EAAB00">EAAB00</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#B88B00">B88B00</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#9E7C0C">9E7C0C</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#F8E498">F8E498</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#FADD80">FADD80</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#FFCB4F">FFCB4F</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#FFB612">FFB612</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#C59217">C59217</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#AB8422">AB8422</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#856822">856822</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#F2DF74">F2DF74</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#F2D653">F2D653</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#F3CF45">F3CF45</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#F0AB00">F0AB00</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#CE8E00">CE8E00</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#A17700">A17700</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#6D5818">6D5818</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#FBD476">FBD476</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#FFC550">FFC550</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#FFBC3D">FFBC3D</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#FFA100">FFA100</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#DF7A00">DF7A00</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#B06F00">B06F00</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#755418">755418</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#FCD189">FCD189</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#FFC674">FFC674</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#FFB652">FFB652</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#FFA02F">FFA02F</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#D47600">D47600</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#9C6114">9C6114</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#6A491C">6A491C</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#EFCB65">EFCB65</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#EFBD47">EFBD47</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#EEAF30">EEAF30</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#E98300">E98300</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#CA7700">CA7700</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#9C6409">9C6409</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#6E5A2A">6E5A2A</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#FBCE92">FBCE92</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#FDC480">FDC480</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#FFA952">FFA952</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#FF7900">FF7900</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#E17000">E17000</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#BB650E">BB650E</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#955214">955214</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#FFB070">FFB070</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#FF9133">FF9133</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#FF6E00">FF6E00</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#FF5800">FF5800</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#C54C00">C54C00</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#91420E">91420E</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#542E19">542E19</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#EED6A5">EED6A5</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#ECC182">ECC182</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#E9994A">E9994A</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#E37222">E37222</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#C75B12">C75B12</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#9D5116">9D5116</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#623C1B">623C1B</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#FFC19C">FFC19C</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#FFAA7B">FFAA7B</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#FF8849">FF8849</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#FF6D22">FF6D22</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#D55C19">D55C19</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#A25022">A25022</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#86431E">86431E</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#FFC2A2">FFC2A2</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#FF9E71">FF9E71</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#FF7F45">FF7F45</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#FF6319">FF6319</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#E05206">E05206</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#BD4F19">BD4F19</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#6E3219">6E3219</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#FFA48A">FFA48A</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#FF8F70">FF8F70</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#FF6D42">FF6D42</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#FB4F14">FB4F14</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#DD4814">DD4814</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#A33F1F">A33F1F</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#833820">833820</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#FFB7AE">FFB7AE</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#FF8B7C">FF8B7C</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#FF5C3E">FF5C3E</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#F9461C">F9461C</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#D2492A">D2492A</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#9A3B26">9A3B26</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#70382D">70382D</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#FFB0B7">FFB0B7</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#FF818D">FF818D</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#FF585F">FF585F</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#F7403A">F7403A</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#DE3831">DE3831</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#BD3632">BD3632</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#7B2927">7B2927</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#FE9EAF">FE9EAF</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#FE8A9E">FE8A9E</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#F54359">F54359</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#EA2839">EA2839</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#CD202C">CD202C</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#AA272F">AA272F</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#782327">782327</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#F9BBCA">F9BBCA</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#FA93AB">FA93AB</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#F4587A">F4587A</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#E00034">E00034</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#C60C30">C60C30</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#A71930">A71930</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#772432">772432</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#F6A3BB">F6A3BB</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#F3789B">F3789B</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#EC4371">EC4371</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#E10E49">E10E49</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#BB133E">BB133E</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#97233F">97233F</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#773141">773141</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#E9C5CB">E9C5CB</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#E59AAA">E59AAA</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#DB4D69">DB4D69</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#D0103A">D0103A</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#B71234">B71234</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#981E32">981E32</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#822433">822433</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#E7AEC6">E7AEC6</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#E27EA6">E27EA6</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#DA487E">DA487E</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#CB0044">CB0044</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#A70240">A70240</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#882345">882345</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#6E273D">6E273D</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#F9A1CA">F9A1CA</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#F77AB4">F77AB4</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#F04D98">F04D98</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#E21776">E21776</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#C90062">C90062</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#A71056">A71056</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#7C2348">7C2348</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#EABDD8">EABDD8</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#E26EB2">E26EB2</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#D71F85">D71F85</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#CA005D">CA005D</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#A30050">A30050</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#91004B">91004B</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#6A1A41">6A1A41</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#F092CD">F092CD</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#EB67B9">EB67B9</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#E0294A">E0294A</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#CF0072">CF0072</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#A90061">A90061</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#830051">830051</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#662046">662046</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#F7A3D5">F7A3D5</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#F375C6">F375C6</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#EA3BAE">EA3BAE</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#E0119D">E0119D</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#C50084">C50084</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#A1006B">A1006B</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#850057">850057</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#F3ADDE">F3ADDE</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#EF8BD3">EF8BD3</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#E45BBF">E45BBF</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#DA39AF">DA39AF</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#BF2296">BF2296</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#A31A7E">A31A7E</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#772059">772059</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#EFC2E1">EFC2E1</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#E170C9">E170C9</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#D12DB1">D12DB1</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#C3009E">C3009E</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#A40084">A40084</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#920075">920075</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#7D0063">7D0063</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#EBBCE3">EBBCE3</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#E59FDB">E59FDB</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#DE81D3">DE81D3</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#C21DAC">C21DAC</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#B1059D">B1059D</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#9B1889">9B1889</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#752864">752864</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#E7C1E3">E7C1E3</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#DC9DDD">DC9DDD</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#C966CD">C966CD</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#B634BB">B634BB</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#A626AA">A626AA</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#952D98">952D98</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#6E2C6B">6E2C6B</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#DCC7DF">DCC7DF</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#CBA8D2">CBA8D2</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#93509E">93509E</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#6E267B">6E267B</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#622567">622567</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#5A245A">5A245A</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#53284F">53284F</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#D4AAE2">D4AAE2</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#C48BDA">C48BDA</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#A44DC4">A44DC4</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#8F23B3">8F23B3</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#7C109A">7C109A</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#6B1F7C">6B1F7C</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#5E2D61">5E2D61</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#C9A5D7">C9A5D7</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#B382C7">B382C7</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#9C5FB5">9C5FB5</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#80379B">80379B</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#6E2585">6E2585</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#631D76">631D76</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#5B1F69">5B1F69</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#BB9DD6">BB9DD6</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#A47CC9">A47CC9</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#824BB0">824BB0</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#57068C">57068C</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#4F0B78">4F0B78</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#490E6F">490E6F</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#42145F">42145F</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#DBCFE9">DBCFE9</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#C1AFE5">C1AFE5</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#8C6CD0">8C6CD0</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#6639B7">6639B7</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#522398">522398</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#4F2D7F">4F2D7F</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#4B306A">4B306A</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#C5B9E3">C5B9E3</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#AC98DB">AC98DB</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#9278D1">9278D1</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#7D5CC6">7D5CC6</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#4B08A1">4B08A1</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#3B0083">3B0083</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#331C54">331C54</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#B3B6DD">B3B6DD</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#9093CE">9093CE</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#7577C0">7577C0</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#241773">241773</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#1F145D">1F145D</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#1E1656">1E1656</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#201C3E">201C3E</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#A5A4DF">A5A4DF</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#8884D5">8884D5</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#6459C4">6459C4</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#280091">280091</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#240078">240078</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#21076A">21076A</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#1C0E52">1C0E52</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#CAD1E7">CAD1E7</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#9DABE2">9DABE2</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#4C5CC5">4C5CC5</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#2526A9">2526A9</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#212492">212492</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#1A206D">1A206D</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#1A2155">1A2155</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#C5D7EB">C5D7EB</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#A8C5EB">A8C5EB</button>
+
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#0018A8">0018A8</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#00257A">00257A</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#002663">002663</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#182B49">182B49</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#B3C8E6">B3C8E6</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#5A85D7">5A85D7</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#0F4DBC">0F4DBC</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#001B96">001B96</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#031F73">031F73</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#0B2265">0B2265</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#0F204B">0F204B</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#AACAE6">AACAE6</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#8EBAE5">8EBAE5</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#4B92DB">4B92DB</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#002395">002395</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#002776">002776</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#002664">002664</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#002147">002147</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#98C6EA">98C6EA</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#6AADE4">6AADE4</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#0073CF">0073CF</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#0039A6">0039A6</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#00338D">00338D</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#002C77">002C77</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#002244">002244</button>
+
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#A0CFEB">A0CFEB</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#63B1E5">63B1E5</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#0046AD">0046AD</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#003478">003478</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#002F5F">002F5F</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#031E2F">031E2F</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#8FCAE7">8FCAE7</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#5EB6E4">5EB6E4</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#0098DB">0098DB</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#005BBB">005BBB</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#00549F">00549F</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#003C69">003C69</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#002B45">002B45</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#72C7E7">72C7E7</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#3DB7E4">3DB7E4</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#00A1DE">00A1DE</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#0065BD">0065BD</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#005293">005293</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#004165">004165</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#003145">003145</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#A3DBE8">A3DBE8</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#5BC6E8">5BC6E8</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#00A9E0">00A9E0</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#007AC9">007AC9</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#0066A1">0066A1</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#005172">005172</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#004153">004153</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#A1DEE9">A1DEE9</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#65CFE9">65CFE9</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#00B9E4">00B9E4</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#0088CE">0088CE</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#0075B0">0075B0</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#005B82">005B82</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#003D4C">003D4C</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#6FD4E4">6FD4E4</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#0CC6DE">0CC6DE</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#00ADD0">00ADD0</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#0098C3">0098C3</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#0083A9">0083A9</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#006983">006983</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#004953">004953</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#71D6E0">71D6E0</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#00C6D7">00C6D7</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#00B0CA">00B0CA</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#0094B3">0094B3</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#007C92">007C92</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#006778">006778</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#00505C">00505C</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#BBE7E6">BBE7E6</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#8FDFE2">8FDFE2</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#3FCFD5">3FCFD5</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#009AA6">009AA6</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#008B95">008B95</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#00747A">00747A</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#006265">006265</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#9CDCD9">9CDCD9</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#63CECA">63CECA</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#00B2A9">00B2A9</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#008770">008770</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#007363">007363</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#00675A">00675A</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#005751">005751</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#72DCD4">72DCD4</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#47D5CD">47D5CD</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#00C0B5">00C0B5</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#00A599">00A599</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#00877C">00877C</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#005D55">005D55</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#004D46">004D46</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#80E0D3">80E0D3</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#3AD6C5">3AD6C5</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#00C7B2">00C7B2</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#00B299">00B299</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#009581">009581</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#007B69">007B69</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#024E43">024E43</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#7FD5C5">7FD5C5</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#50C9B5">50C9B5</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#00B092">00B092</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#009B74">009B74</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#008566">008566</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#006D55">006D55</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#004438">004438</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#B0E9DB">B0E9DB</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#A1E7D7">A1E7D7</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#4BDBC3">4BDBC3</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#00AD83">00AD83</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#009B76">009B76</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#007F64">007F64</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#006751">006751</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#9ADCC6">9ADCC6</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#76D2B6">76D2B6</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#00B588">00B588</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#00985F">00985F</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#007D57">007D57</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#006A4D">006A4D</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#035642">035642</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#81E2C1">81E2C1</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#50DAB0">50DAB0</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#00C78B">00C78B</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#00AE65">00AE65</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#007A4D">007A4D</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#006643">006643</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#024731">024731</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#AADFBE">AADFBE</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#91D8AE">91D8AE</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#72CE9B">72CE9B</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#009B48">009B48</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#008542">008542</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#00693C">00693C</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#284E36">284E36</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#A6E6BC">A6E6BC</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#8FE2AF">8FE2AF</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#7EDFA6">7EDFA6</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#00AF3F">00AF3F</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#009B3A">009B3A</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#007934">007934</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#275937">275937</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#A9DC92">A9DC92</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#A1DA8B">A1DA8B</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#61C250">61C250</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#34B233">34B233</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#3F9C35">3F9C35</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#3C8A2E">3C8A2E</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#427730">427730</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#C8E59A">C8E59A</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#BDE18A">BDE18A</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#A5D867">A5D867</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#69BE28">69BE28</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#58A618">58A618</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#5B8F22">5B8F22</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#53682B">53682B</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#D9EC9C">D9EC9C</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#D0EB8A">D0EB8A</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#C3E76F">C3E76F</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#92D400">92D400</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#7AB800">7AB800</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#739600">739600</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#55601C">55601C</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#E0E96E">E0E96E</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#D6E342">D6E342</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#C9DD03">C9DD03</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#BED600">BED600</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#A2AD00">A2AD00</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#8E9300">8E9300</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#726E20">726E20</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#E8EB6F">E8EB6F</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#E0E830">E0E830</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#D9E506">D9E506</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#CCDC00">CCDC00</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#B6BF00">B6BF00</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#9C9A00">9C9A00</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#7F7A00">7F7A00</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#EEEC83">EEEC83</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#EBE945">EBE945</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#DFDF00">DFDF00</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#C1BB00">C1BB00</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#AEA400">AEA400</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#9C9100">9C9100</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#F2EE72">F2EE72</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#F1E800">F1E800</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#EADF00">EADF00</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#EAD700">EAD700</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#B5A300">B5A300</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#978700">978700</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#695D15">695D15</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#CBC7BF">CBC7BF</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#B6B1A9">B6B1A9</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#A9A39B">A9A39B</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#928B81">928B81</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#776F65">776F65</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#5F574F">5F574F</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#2A2623">2A2623</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#CDC6C0">CDC6C0</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#B5ACA6">B5ACA6</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#A29791">A29791</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#8D817B">8D817B</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#766A65">766A65</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#5D4F4B">5D4F4B</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#332B2A">332B2A</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#C6C6BC">C6C6BC</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#B0B1A6">B0B1A6</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#999A8F">999A8F</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#83847A">83847A</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#6D6F64">6D6F64</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#57584F">57584F</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#1C1E1C">1C1E1C</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#CECFCB">CECFCB</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#B5B6B3">B5B6B3</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#A2A4A3">A2A4A3</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#8E908F">8E908F</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#6C6F70">6C6F70</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#565A5C">565A5C</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#191D1F">191D1F</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#D1D4D3">D1D4D3</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#C3C8C8">C3C8C8</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#A5ACAF">A5ACAF</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#818A8F">818A8F</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#5E6A71">5E6A71</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#37424A">37424A</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#1B242A">1B242A</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#CFC3C3">CFC3C3</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#C2B2B5">C2B2B5</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#B29FA4">B29FA4</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#80686F">80686F</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#513C40">513C40</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#423132">423132</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#312626">312626</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#BEC5C2">BEC5C2</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#A9B2B1">A9B2B1</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#949D9E">949D9E</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#747F81">747F81</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#4D5357">4D5357</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#404545">404545</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#353735">353735</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#E0DED8">E0DED8</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#D5D2CA">D5D2CA</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#C7C2BA">C7C2BA</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#B7B1A9">B7B1A9</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#AEA79F">AEA79F</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#A59D95">A59D95</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#988F86">988F86</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#8B8178">8B8178</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#82786F">82786F</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#766A62">766A62</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#675C53">675C53</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#E0E1DD">E0E1DD</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#D5D6D2">D5D6D2</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#C9CAC8">C9CAC8</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#BCBDBC">BCBDBC</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#B2B4B3">B2B4B3</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#ADAFAF">ADAFAF</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#9A9B9C">9A9B9C</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#8B8D8E">8B8D8E</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#747578">747578</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#616365">616365</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#4D4F53">4D4F53</button>
+
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#252C26">252C26</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#382D24">382D24</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#443135">443135</button>
+
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#363534">363534</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#4B452C">4B452C</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#4C4726">4C4726</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#4F4C25">4F4C25</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#9A996E">9A996E</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#B3B38C">B3B38C</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#C2C2A0">C2C2A0</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#D0D1B4">D0D1B4</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#5B491F">5B491F</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#816E2C">816E2C</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#988642">988642</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#B4A76C">B4A76C</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#C6BC89">C6BC89</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#D1C99D">D1C99D</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#DCD6B2">DCD6B2</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#65551C">65551C</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#9A8419">9A8419</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#B19401">B19401</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#DDCD69">DDCD69</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#E2D478">E2D478</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#E6DC8F">E6DC8F</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#EAE4A9">EAE4A9</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#584528">584528</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#6C4D23">6C4D23</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#825C26">825C26</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#B3995D">B3995D</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#C7B37F">C7B37F</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#D2C295">D2C295</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#DDD3AF">DDD3AF</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#512B1B">512B1B</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#935E3A">935E3A</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#AE7D5B">AE7D5B</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#BD9271">BD9271</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#CEA98C">CEA98C</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#DBC0A8">DBC0A8</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#E2CDB8">E2CDB8</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#60351D">60351D</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#9D5324">9D5324</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#B2541A">B2541A</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#E39B6C">E39B6C</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#EFBE9C">EFBE9C</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#F1C4A2">F1C4A2</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#F1CDAF">F1CDAF</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#522D24">522D24</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#774A39">774A39</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#966D5B">966D5B</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#AB8876">AB8876</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#C0A494">C0A494</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#CDB6A7">CDB6A7</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#D8C7B9">D8C7B9</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#4C3327">4C3327</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#5D3526">5D3526</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#703D29">703D29</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#A88165">A88165</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#C7AC96">C7AC96</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#D3BEA9">D3BEA9</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#DAC9B5">DAC9B5</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#673327">673327</button>
+
+
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#E78F77">E78F77</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#E9A68F">E9A68F</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#EBBDA9">EBBDA9</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#EBCAB8">EBCAB8</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#5B2B2F">5B2B2F</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#783037">783037</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#8A343A">8A343A</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#D78396">D78396</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#E5A0AF">E5A0AF</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#EDB8C4">EDB8C4</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#F0C4CD">F0C4CD</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#4E2E2D">4E2E2D</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#683735">683735</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#753B37">753B37</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#C5858F">C5858F</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#DBA7AE">DBA7AE</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#E6BFC4">E6BFC4</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#EACACD">EACACD</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#452325">452325</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#844C54">844C54</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#9D6670">9D6670</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#B6848C">B6848C</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#CFA7AD">CFA7AD</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#DABBBE">DABBBE</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#E2CACB">E2CACB</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#592C35">592C35</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#6F2C3E">6F2C3E</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#83334A">83334A</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#D490A8">D490A8</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#E3ABBE">E3ABBE</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#E8B7C7">E8B7C7</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#EBC0CC">EBC0CC</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#5E2750">5E2750</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#77216F">77216F</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#8E258D">8E258D</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#D28AC8">D28AC8</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#E1AAD7">E1AAD7</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#E8BCDD">E8BCDD</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#EAC7DF">EAC7DF</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#4B2942">4B2942</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#6A4061">6A4061</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#865F7F">865F7F</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#9F7F9A">9F7F9A</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#C2ACBE">C2ACBE</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#D5C5D1">D5C5D1</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#D9CCD4">D9CCD4</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#4F324C">4F324C</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#593160">593160</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#693A77">693A77</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#AB8ABA">AB8ABA</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#BEA5CA">BEA5CA</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#CCB7D4">CCB7D4</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#D7C8DC">D7C8DC</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#4A3242">4A3242</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#644459">644459</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#89687C">89687C</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#AF94A3">AF94A3</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#C4AFB9">C4AFB9</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#D2C0C8">D2C0C8</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#DFD4D7">DFD4D7</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#532E60">532E60</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#652D86">652D86</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#722EA5">722EA5</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#AD80D0">AD80D0</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#C5A3DC">C5A3DC</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#D3B8E2">D3B8E2</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#DDC6E4">DDC6E4</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#272445">272445</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#403B65">403B65</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#55517B">55517B</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#8683A4">8683A4</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#AFADC3">AFADC3</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#C0BFCF">C0BFCF</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#D2D3DB">D2D3DB</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#292C39">292C39</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#21314D">21314D</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#263F6A">263F6A</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#92A2BD">92A2BD</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#A4B3C9">A4B3C9</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#BEC9D6">BEC9D6</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#CED5DD">CED5DD</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#002A42">002A42</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#003359">003359</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#003F72">003F72</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#64A0C8">64A0C8</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#9EC3DE">9EC3DE</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#B7D2E3">B7D2E3</button>
+
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#03202F">03202F</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#44697D">44697D</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#5C7F92">5C7F92</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#7D9AAA">7D9AAA</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#A6BCC6">A6BCC6</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#B9C9D0">B9C9D0</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#C6D3D7">C6D3D7</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#00333B">00333B</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#003946">003946</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#004250">004250</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#5E9CAE">5E9CAE</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#8CBBC6">8CBBC6</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#A1C6CF">A1C6CF</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#BED6DB">BED6DB</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#002D36">002D36</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#156570">156570</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#589199">589199</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#83AFB4">83AFB4</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#99BFC2">99BFC2</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#B5D0D1">B5D0D1</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#C3D9D7">C3D9D7</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#1C3632">1C3632</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#3E5D57">3E5D57</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#627D77">627D77</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#899F99">899F99</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#A7B8B4">A7B8B4</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#BAC7C3">BAC7C3</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#C9D4D0">C9D4D0</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#214332">214332</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#1D5C42">1D5C42</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#206C49">206C49</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#70A489">70A489</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#91BAA3">91BAA3</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#AAC9B6">AAC9B6</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#BCD4C3">BCD4C3</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#203731">203731</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#496C60">496C60</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#6A8A7F">6A8A7F</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#8BA69C">8BA69C</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#A1B9AF">A1B9AF</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#B9CCC3">B9CCC3</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#CBD9D1">CBD9D1</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#23423A">23423A</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#175E54">175E54</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#0D776E">0D776E</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#7BBBB2">7BBBB2</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#99CCC3">99CCC3</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#B5DAD2">B5DAD2</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#C9E3DC">C9E3DC</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#20372A">20372A</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#59705D">59705D</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#718674">718674</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#96A797">96A797</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#ADBBAD">ADBBAD</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#BBC6B9">BBC6B9</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#C7D1C5">C7D1C5</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#1C453B">1C453B</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#00685B">00685B</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#008576">008576</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#79CABD">79CABD</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#A1DAD0">A1DAD0</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#B2E0D6">B2E0D6</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#BFE3DA">BFE3DA</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#435125">435125</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#557630">557630</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#69923A">69923A</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#ABC785">ABC785</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#B8CF95">B8CF95</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#C1D59F">C1D59F</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#CCDBAE">CCDBAE</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#404A29">404A29</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#5B6334">5B6334</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#6E7645">6E7645</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#90986B">90986B</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#A9B089">A9B089</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#B9BE9C">B9BE9C</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#CBCFB3">CBCFB3</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#3E4519">3E4519</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#6A7029">6A7029</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#898F4B">898F4B</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#A3A86B">A3A86B</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#BEC292">BEC292</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#CACDA3">CACDA3</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#D8DABA">D8DABA</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#5B5617">5B5617</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#878800">878800</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#ABB400">ABB400</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#CED64B">CED64B</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#DADF71">DADF71</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#DFE383">DFE383</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#E3E696">E3E696</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#4B471A">4B471A</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#827C34">827C34</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#A09B59">A09B59</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#AEAA6C">AEAA6C</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#C4CA8E">C4CA8E</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#CECCA0">CECCA0</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#D6D4AE">D6D4AE</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#EDEBBA">EDEBBA</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#EDEA9C">EDEA9C</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#EDE98C">EDE98C</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#ECE354">ECE354</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#EADE29">EADE29</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#E1CD00">E1CD00</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#D4BA00">D4BA00</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#EBE8B1">EBE8B1</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#E9E69F">E9E69F</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#E7E188">E7E188</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#E0D760">E0D760</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#D5C833">D5C833</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#C2B000">C2B000</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#B19B00">B19B00</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#E1DEAE">E1DEAE</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#DAD69C">DAD69C</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#D3CD8B">D3CD8B</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#C6BF70">C6BF70</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#AEA444">AEA444</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#9B8F2E">9B8F2E</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#887B1B">887B1B</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#D1DFD6">D1DFD6</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#B7CEC4">B7CEC4</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#9DBCB0">9DBCB0</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#7CA295">7CA295</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#578575">578575</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#2C5E4F">2C5E4F</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#13352C">13352C</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#C1E2E5">C1E2E5</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#A1D8E0">A1D8E0</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#85CDDB">85CDDB</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#3CB6CE">3CB6CE</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#009BBB">009BBB</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#007EA3">007EA3</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#006890">006890</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#ACDEE6">ACDEE6</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#90D7E7">90D7E7</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#52C6E2">52C6E2</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#00AFD8">00AFD8</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#0099CC">0099CC</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#0082BB">0082BB</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#0073B0">0073B0</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#D3DEE4">D3DEE4</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#C3D3DF">C3D3DF</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#93B1CC">93B1CC</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#739ABC">739ABC</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#5482AB">5482AB</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#165788">165788</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#002857">002857</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#D7DFE6">D7DFE6</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#C5D2E0">C5D2E0</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#9BB2CE">9BB2CE</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#7090B7">7090B7</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#21578A">21578A</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#002C5F">002C5F</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#00204E">00204E</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#DAE3EA">DAE3EA</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#C6D6E8">C6D6E8</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#A7C1E3">A7C1E3</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#6F9AD3">6F9AD3</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#2A6EBB">2A6EBB</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#003591">003591</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#001D77">001D77</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#E0DCE3">E0DCE3</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#DCD8E2">DCD8E2</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#C6BDD2">C6BDD2</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#A092B4">A092B4</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#786592">786592</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#614D7D">614D7D</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#412D5D">412D5D</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#E9D4E1">E9D4E1</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#E5C0D8">E5C0D8</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#DEA3C8">DEA3C8</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#D688B8">D688B8</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#C55E9B">C55E9B</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#AC2973">AC2973</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#970254">970254</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#E4D0DB">E4D0DB</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#E0C7D7">E0C7D7</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#DDBED1">DDBED1</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#C896B5">C896B5</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#B3749A">B3749A</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#954975">954975</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#772953">772953</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#E3C5D2">E3C5D2</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#DEB7CA">DEB7CA</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#D5A5BE">D5A5BE</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#C286A7">C286A7</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#B06A92">B06A92</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#8F3F6D">8F3F6D</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#641F45">641F45</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#E9D3D7">E9D3D7</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#E2C2C7">E2C2C7</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#D8AAB3">D8AAB3</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#C68D99">C68D99</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#B26F7E">B26F7E</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#8E4453">8E4453</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#823C47">823C47</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#EFD6DB">EFD6DB</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#EFC5CE">EFC5CE</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#EBAAB9">EBAAB9</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#E28A9E">E28A9E</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#D06079">D06079</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#B5384F">B5384F</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#A22B38">A22B38</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#F1DBDF">F1DBDF</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#F3C9D3">F3C9D3</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#F4B2C1">F4B2C1</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#F28CA3">F28CA3</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#EA6682">EA6682</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#DE4561">DE4561</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#CF2F44">CF2F44</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#F8CCA6">F8CCA6</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#FAC396">FAC396</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#FBAF73">FBAF73</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#F69240">F69240</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#EC7A08">EC7A08</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#D95E00">D95E00</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#C84E00">C84E00</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#EDCFB3">EDCFB3</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#E9BF9B">E9BF9B</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#E2AE81">E2AE81</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#CD894E">CD894E</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#BA6F2E">BA6F2E</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#954A09">954A09</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#803D0D">803D0D</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#E5CBB1">E5CBB1</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#DDB99A">DDB99A</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#D3A985">D3A985</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#BD8A5E">BD8A5E</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#A76F3E">A76F3E</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#723D14">723D14</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#5F3316">5F3316</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#F1E3BB">F1E3BB</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#EBDD9C">EBDD9C</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#E8CE79">E8CE79</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#F3D311">F3D311</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#ECC200">ECC200</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#EBB700">EBB700</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#CA9B4A">CA9B4A</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#F2AF00">F2AF00</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#EEAF00">EEAF00</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#FAA671">FAA671</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#E1A358">E1A358</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#CD7A31">CD7A31</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#D47B22">D47B22</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#B7621B">B7621B</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#E3BAA4">E3BAA4</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#E0684B">E0684B</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#DC5034">DC5034</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#C24D52">C24D52</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#A8475A">A8475A</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#981F40">981F40</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#5E172D">5E172D</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#F0D5DA">F0D5DA</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#DF668A">DF668A</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#DA3D7E">DA3D7E</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#B7295A">B7295A</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#AA1948">AA1948</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#96172E">96172E</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#6D2D41">6D2D41</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#E3C4D1">E3C4D1</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#DBAFC2">DBAFC2</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#CB89A5">CB89A5</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#B56183">B56183</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#A84069">A84069</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#963156">963156</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#82244E">82244E</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#E8D7E3">E8D7E3</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#CCB2D1">CCB2D1</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#CF9AD5">CF9AD5</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#B390BB">B390BB</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#A17AAA">A17AAA</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#9760C2">9760C2</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#8637BA">8637BA</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#D8D9E5">D8D9E5</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#B6BADB">B6BADB</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#A5A2C6">A5A2C6</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#8F8DCB">8F8DCB</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#5A447A">5A447A</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#4A3651">4A3651</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#3C2639">3C2639</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#BCC3DB">BCC3DB</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#89A8E0">89A8E0</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#8193DB">8193DB</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#7BA4D9">7BA4D9</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#6493B5">6493B5</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#4060AF">4060AF</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#6773B6">6773B6</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#CAE3E9">CAE3E9</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#72B5CC">72B5CC</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#3095B4">3095B4</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#0089C4">0089C4</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#0083BE">0083BE</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#005A8B">005A8B</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#003150">003150</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#A0D6D2">A0D6D2</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#35C4B5">35C4B5</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#00B3BE">00B3BE</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#00A8B4">00A8B4</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#00759A">00759A</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#005C84">005C84</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#005E6E">005E6E</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#80DED6">80DED6</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#5BBBB7">5BBBB7</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#1E9D8B">1E9D8B</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#007A87">007A87</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#477F80">477F80</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#005157">005157</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#22505F">22505F</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#A2E6C2">A2E6C2</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#32D17E">32D17E</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#00C473">00C473</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#00BA4C">00BA4C</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#00A551">00A551</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#275E37">275E37</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#00583C">00583C</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#DAE5CD">DAE5CD</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#C5E5A4">C5E5A4</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#99E071">99E071</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#76D750">76D750</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#73AF55">73AF55</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#6A963B">6A963B</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#738639">738639</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#C7D28A">C7D28A</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#BAC696">BAC696</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#9EB28F">9EB28F</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#879637">879637</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#6A7F10">6A7F10</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#756E52">756E52</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#4E562B">4E562B</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#EDE8C4">EDE8C4</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#E1D8B7">E1D8B7</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#DBCEAC">DBCEAC</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#D3BF96">D3BF96</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#A79E70">A79E70</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#91785B">91785B</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#836344">836344</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#ECDEBB">ECDEBB</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#F7D6A5">F7D6A5</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#E3C08B">E3C08B</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#D9AC6D">D9AC6D</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#C88F42">C88F42</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#B26F16">B26F16</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#A05C0F">A05C0F</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#E6BFAE">E6BFAE</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#D7A890">D7A890</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#C99272">C99272</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#9A542E">9A542E</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#85421E">85421E</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#6D5047">6D5047</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#635245">635245</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#EAC4B7">EAC4B7</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#C6A693">C6A693</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#B6735C">B6735C</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#AC675E">AC675E</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#A5594C">A5594C</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#9B6E51">9B6E51</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#8D3C1E">8D3C1E</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#DAD7CB">DAD7CB</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#CAC0B6">CAC0B6</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#BDB1A6">BDB1A6</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#AA9C8F">AA9C8F</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#857363">857363</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#665546">665546</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#4A3C31">4A3C31</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#D7D3C7">D7D3C7</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#BEB9A6">BEB9A6</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#AAA38E">AAA38E</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#AEB4AB">AEB4AB</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#9CA299">9CA299</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#989B97">989B97</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#5E6167">5E6167</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#E0E6E6">E0E6E6</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#ACC0C6">ACC0C6</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#A4AEB5">A4AEB5</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#8996A0">8996A0</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#51626F">51626F</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#394A58">394A58</button>
+            <button type="button" class="btn btn-swatch btn-lg" style="background-color:#1A2732">1A2732</button>
+        </div>
+    </div>
+
+    <!--  logout button   -->
+    <div class = row>
+        <div class= "col-10"></div>
+        <div class = col-2>
+            <a class="btn btn-BW my-1" href="./home.html" id ="btn-logout" onclick="handleLogout()">LOGOUT</a>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+<script src="./javascript/register.js" type="application/javascript"></script>
+<script src="./javascript/login.js" type="application/javascript"></script>
+<script src="./javascript/home.js" type="application/javascript"></script>
+</body>
+</html>
