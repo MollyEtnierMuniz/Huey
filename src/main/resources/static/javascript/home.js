@@ -49,7 +49,7 @@ const handleSubmit = async (e) => {
     e.preventDefault()
     let bodyObj = {
         // body: document.getElementById("palette-input").value}
-    body:swatchList}
+    body:swatchList.join(" ")}
 
     console.log(bodyObj)
     // body: document.getElementById("palette-input").value}
@@ -67,6 +67,7 @@ async function addPalette(obj) {
         method: "POST",
         body: JSON.stringify(obj),
         headers: headers})
+        // try arrayName.join(,)
         .catch(err => console.error(err.message))
     if (response.status == 200) {
         return getPalettes(userId);}}
@@ -144,30 +145,33 @@ const populateModal = (obj) =>{
 // ***** copied for populate saved palette modal *****
 // const swatch = document.querySelectorAll(".btn-swatch")
 // let swatchList =[]
+// the function below, createSavedSwatch, will be triggered by clicking "SAVE" to a palette
+
+function createSavedSwatch(){
+    document.getElementById("palette-input").innerHTML=""
+    console.log (swatchList)
+
+    // const savedHexcode = "#"+paletteArray[i]
+    for (let i =0; i <swatchList.length; i++){
+    const newsavedSwatch = document.createElement("div")
+
+    // gives this div a specific class
+    newsavedSwatch.setAttribute("class", swatchList[i])
+    newsavedSwatch.style.height = "50px"
+    newsavedSwatch.style.width = "50px"
+    newsavedSwatch.style.backgroundColor = swatchList[i]
+    newsavedSwatch.style.display = "inline-block"
+    newsavedSwatch.style.marginRight = "5px"
+    newsavedSwatch.style.borderRadius = "10px"
+    newsavedSwatch.style.border = "3px solid black"
+    newsavedSwatch.style.font = "16px black"
+    newsavedSwatch.style.fill="test"
+
+    document.getElementById("saved-palette-input").appendChild(newsavedSwatch)
+    }
+}
 //
-// function createSwatch(event){
-//
-//     console.log(event.target.innerHTML)
-//     const hexcode = "#"+event.target.innerHTML
-//     swatchList.push(hexcode)
-//     const newSwatch = document.createElement("div")
-//
-//     // gives this div a specific class
-//     newSwatch.setAttribute("class", event.target.innerHTML)
-//     newSwatch.style.height = "50px"
-//     newSwatch.style.width = "50px"
-//     newSwatch.style.backgroundColor = hexcode
-//     newSwatch.style.display = "inline-block"
-//     newSwatch.style.marginRight = "5px"
-//     newSwatch.style.borderRadius = "10px"
-//     newSwatch.style.border = "3px solid black"
-//     newSwatch.style.font = "16px black"
-//     newSwatch.style.fill="test"
-//
-//     document.getElementById("palette-input").appendChild(newSwatch)
-// }
-//
-// for (let i=0; i<swatch.length; i++){
+// for (let i=0; i<paletteArray.length; i++){
 //     swatch[i].addEventListener('click',createSwatch)
 // }
 
@@ -175,7 +179,10 @@ const populateModal = (obj) =>{
 
 
 getPalettes(userId);
+
 submitPaletteForm.addEventListener("submit", handleSubmit)
+submitPaletteForm.addEventListener("submit", createSavedSwatch)
+
 
 updatePaletteBtn.addEventListener("click", (e)=>{
     let paletteId = e.target.getAttribute('data-palette-id')
