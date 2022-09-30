@@ -11,16 +11,19 @@ let paletteBody = document.getElementById(`palette-body`)
 let updatePaletteBtn = document.getElementById('update-palette-button')
 
 // const headers = {'Content-Type': 'application/json'}
-// const baseUrl = "http://localhost:8080/api/v1/palettes/"
+const baseUrl2 = "http://localhost:8080/api/v1/palettes/"
 
 // ********** new code *************
 const swatch = document.querySelectorAll(".btn-swatch")
+let swatchList =[]
 
 function createSwatch(event){
 
     console.log(event.target.innerHTML)
     const hexcode = "#"+event.target.innerHTML
+    swatchList.push(hexcode)
     const newSwatch = document.createElement("div")
+
     // gives this div a specific class
     newSwatch.setAttribute("class", event.target.innerHTML)
     newSwatch.style.height = "50px"
@@ -33,12 +36,11 @@ function createSwatch(event){
     newSwatch.style.font = "16px black"
     newSwatch.style.fill="test"
 
-    document.getElementById("palette-container").appendChild(newSwatch)
+    document.getElementById("palette-input").appendChild(newSwatch)
 }
 
 for (let i=0; i<swatch.length; i++){
     swatch[i].addEventListener('click',createSwatch)
-
 }
 
 // ************  old Code *************
@@ -47,15 +49,21 @@ const handleSubmit = async (e) => {
     e.preventDefault()
     let bodyObj = {
         // body: document.getElementById("palette-input").value}
+    body:swatchList}
 
-    body: document.getElementById("palette-container").value}
+    console.log(bodyObj)
+    // body: document.getElementById("palette-input").value}
 
     await addPalette(bodyObj);
-    document.getElementById("palette-container").value = ''}
+    document.getElementById("palette-input").value = ''
+
+    swatchList = []
+}
+    console.log (swatchList)
 
 
 async function addPalette(obj) {
-    const response = await fetch(`${baseUrl}user/${userId}`, {
+    const response = await fetch(`${baseUrl2}user/${userId}`, {
         method: "POST",
         body: JSON.stringify(obj),
         headers: headers})
@@ -64,7 +72,7 @@ async function addPalette(obj) {
         return getPalettes(userId);}}
 
 async function getPalettes(userId) {
-    await fetch(`${baseUrl}user/${userId}`, {
+    await fetch(`${baseUrl2}user/${userId}`, {
         method: "GET",
         headers: headers})
         .then(response => response.json())
@@ -72,14 +80,14 @@ async function getPalettes(userId) {
         .catch(err => console.error(err))}
 
 async function handleDelete(paletteId){
-    await fetch(baseUrl + paletteId, {
+    await fetch(baseUrl2 + paletteId, {
         method: "DELETE",
         headers: headers})
         .catch(err => console.error(err))
     return getPalettes(userId);}
 
 async function getPaletteById(paletteId){
-    await fetch(baseUrl + paletteId, {
+    await fetch(baseUrl2 + paletteId, {
         method: "GET",
         headers: headers})
 
@@ -94,7 +102,7 @@ async function handlePaletteEdit(paletteId){
         id: paletteId,
         body: paletteBody.value}
 
-    await fetch(baseUrl, {
+    await fetch(baseUrl2, {
         method: "PUT",
         body: JSON.stringify(bodyObj),
         headers: headers})
@@ -130,6 +138,41 @@ const populateModal = (obj) =>{
     paletteBody.innerText = ''
     paletteBody.innerText = obj.body
     updatePaletteBtn.setAttribute('data-palette-id', obj.id)}
+
+
+
+// ***** copied for populate saved palette modal *****
+// const swatch = document.querySelectorAll(".btn-swatch")
+// let swatchList =[]
+//
+// function createSwatch(event){
+//
+//     console.log(event.target.innerHTML)
+//     const hexcode = "#"+event.target.innerHTML
+//     swatchList.push(hexcode)
+//     const newSwatch = document.createElement("div")
+//
+//     // gives this div a specific class
+//     newSwatch.setAttribute("class", event.target.innerHTML)
+//     newSwatch.style.height = "50px"
+//     newSwatch.style.width = "50px"
+//     newSwatch.style.backgroundColor = hexcode
+//     newSwatch.style.display = "inline-block"
+//     newSwatch.style.marginRight = "5px"
+//     newSwatch.style.borderRadius = "10px"
+//     newSwatch.style.border = "3px solid black"
+//     newSwatch.style.font = "16px black"
+//     newSwatch.style.fill="test"
+//
+//     document.getElementById("palette-input").appendChild(newSwatch)
+// }
+//
+// for (let i=0; i<swatch.length; i++){
+//     swatch[i].addEventListener('click',createSwatch)
+// }
+
+// ***** copied for populate saved palette modal *****
+
 
 getPalettes(userId);
 submitPaletteForm.addEventListener("submit", handleSubmit)
