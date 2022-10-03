@@ -26,6 +26,7 @@ function createSwatch(event){
 
     // gives this div a specific class
     newSwatch.setAttribute("class", event.target.innerHTML)
+    newSwatch.setAttribute("id", ("active" + event.target.innerHTML))
     newSwatch.style.height = "50px"
     newSwatch.style.width = "50px"
     newSwatch.style.backgroundColor = hexcode
@@ -115,21 +116,10 @@ const createPaletteCards = (array) => {
     array.forEach(obj => {
         let paletteCard = document.createElement("div")
         paletteCard.classList.add("m-2")
-        paletteCard.innerHTML = `
-            <div class="card d-flex" style="width: 18rem; height: 18rem;">
-                <div class="card-body d-flex flex-column  justify-content-between" style="height: available">
-                    <p class="card-text">${obj.body}</p>
-                    <div class="d-flex justify-content-between">
-                        <button class="btn btn-danger" onclick="handleDelete(${obj.id})">Delete</button>
-                        <button onclick="getPaletteById(${obj.id})" type="button" class="btn btn-primary" 
-                        data-bs-toggle="modal" data-bs-target="#palette-edit-modal">
-                        Edit
-                        </button>
-                    </div>
-                </div>
-            </div>
-            `
+// the following line might not be needed
+        paletteCard.innerHTML = ``
         paletteContainer.append(paletteCard); })}
+
 function handleLogout(){
     let c = document.cookie.split(";");
     for(let i in c){
@@ -151,31 +141,30 @@ function createSavedSwatch(){
     document.getElementById("palette-input").innerHTML=""
     console.log (swatchList)
 
-    // const savedHexcode = "#"+paletteArray[i]
     for (let i =0; i <swatchList.length; i++){
-    const newsavedSwatch = document.createElement("div")
+    const newSavedSwatch = document.createElement("div")
 
-    // gives this div a specific class
-    newsavedSwatch.setAttribute("class", swatchList[i])
-    newsavedSwatch.style.height = "50px"
-    newsavedSwatch.style.width = "50px"
-    newsavedSwatch.style.backgroundColor = swatchList[i]
-    newsavedSwatch.style.display = "inline-block"
-    newsavedSwatch.style.marginRight = "5px"
-    newsavedSwatch.style.borderRadius = "10px"
-    newsavedSwatch.style.border = "3px solid black"
-    newsavedSwatch.style.font = "16px black"
-    newsavedSwatch.style.fill="test"
+    // gives this div a specific class and a "saved"+id
+    newSavedSwatch.setAttribute("class", swatchList[i])
+    newSavedSwatch.setAttribute("id", "saved" + swatchList[i])
+    newSavedSwatch.style.height = "50px"
+    newSavedSwatch.style.width = "50px"
+    newSavedSwatch.style.backgroundColor = swatchList[i]
+    newSavedSwatch.style.display = "inline-block"
+    newSavedSwatch.style.marginRight = "5px"
+    newSavedSwatch.style.borderRadius = "10px"
+    newSavedSwatch.style.border = "3px solid black"
+    newSavedSwatch.style.font = "16px black"
+    newSavedSwatch.style.fill="test"
 
-    document.getElementById("saved-palette-input").appendChild(newsavedSwatch)
+    document.getElementById("saved-palette-input").appendChild(newSavedSwatch)
     }
 }
-//
-// for (let i=0; i<paletteArray.length; i++){
-//     swatch[i].addEventListener('click',createSwatch)
-// }
+// addEventListener()
+// letUpdatedSwatchList = swatchList - that div
+// document.getElementsByClassName(swatchList[i]).
 
-// ***** copied for populate saved palette modal *****
+// ***** end of populate saved palette modal *****
 
 
 getPalettes(userId);

@@ -56,20 +56,30 @@ blockquote, q {
     }
 
 .sticky-top {
-    font-family: "Helvetica Neue";
+    font-family: "Helvetica Neue", sans-serif;
     background-color: purple;
     border-radius: 10px;
     height: fit-content;
     border: 5px solid black;
-    margin-left: 0px;
+    margin-left: 1px;
     margin-right: 5px;
-    padding-left: 0px;
+    padding-left: 1px;
     padding-right: 10px;
 }
 
+#top-row{
+    margin-left: 1px;
+    margin-right: 1px;
+    padding: 1px;
+}
+
+.btn-group{
+    padding: 1px;
+}
 h1 {color: lightgray;
     font-size: 30px;
-    font-family: "Helvetica Neue"}
+    font-family: "Helvetica Neue", sans-serif;
+    margin-left: 1px}
 
 #intro{
     font-size: 25px;
@@ -79,7 +89,7 @@ h1 {color: lightgray;
     background-color: lightgray;
     border-radius: 10px;
     font-size: 25px;
-    min-height: 40px;
+    min-height: 20px;
     margin: 0px}
 
 #active-palette{
@@ -102,6 +112,7 @@ h1 {color: lightgray;
 }
 
 .modal-content{
+    height: fit-content;
     font-family: "Helvetica Neue";
     background-color: lightgray;
     font-size: 25px;
