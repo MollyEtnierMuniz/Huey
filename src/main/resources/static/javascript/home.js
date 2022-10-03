@@ -87,49 +87,64 @@ async function addPalette(obj) {
         headers: headers})
         .catch(err => console.error(err.message))
     if (response.status == 200) {
-        return getPalettes(userId);}}
+        console.log ("added palette")}
+}
+        // return getPalettes(userId);}}
 
 
-async function handleDelete(paletteId){
-    await fetch(baseUrl2 + paletteId, {
-        method: "DELETE",
+        async function handleDelete(paletteId) {
+            await fetch(baseUrl + paletteId, {
+                method: "DELETE",
+                headers: headers
+            })
+                .catch(err => console.error(err))
+            // console.log("line 99" + paletteId)
+            return getPalettes(userId);}
+
+
+
+        document.addEventListener("click", handleDelete)
+
+
+        async function handlePaletteEdit(paletteId) {
+            let bodyObj = {
+                id: paletteId,
+                body: paletteBody.value
+            }
+
+            await fetch(baseUrl2, {
+                method: "PUT",
+                body: JSON.stringify(bodyObj),
+                headers: headers
+            })
+                .catch(err => console.error(err))
+            return getPalettes(userId);
+        }
+
+        submitPaletteForm.addEventListener("submit", handleSubmit)
+        submitPaletteForm.addEventListener("submit", createSavedSwatch)
+
+        updatePaletteBtn.addEventListener("click", (e) => {
+            let paletteId = e.target.getAttribute('data-palette-id')
+            handlePaletteEdit(paletteId);
+        })
+
+
+        function handleLogout() {
+            let c = document.cookie.split(";");
+            for (let i in c) {
+                document.cookie = /^[^=]+/.exec(c[i])[0] + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT"
+            }
+        }
+
+async function getPalettes(userId) {
+    await fetch(`${baseUrl2}user/${userId}`, {
+        method: "GET",
         headers: headers})
+        .then(response => response.json())
+        .then(data => createPaletteCards(data))
         .catch(err => console.error(err))}
-    // return getPalettes(userId);}
-document.addEventListener("click", handleDelete)
 
-async function handlePaletteEdit(paletteId){
-    let bodyObj = {
-        id: paletteId,
-        body: paletteBody.value}
-
-    await fetch(baseUrl2, {
-        method: "PUT",
-        body: JSON.stringify(bodyObj),
-        headers: headers})
-        .catch(err => console.error(err))
-    return getPalettes(userId);}
-
-submitPaletteForm.addEventListener("submit", handleSubmit)
-submitPaletteForm.addEventListener("submit", createSavedSwatch)
-
-updatePaletteBtn.addEventListener("click", (e)=>{
-    let paletteId = e.target.getAttribute('data-palette-id')
-    handlePaletteEdit(paletteId);})
-
-
-function handleLogout(){
-    let c = document.cookie.split(";");
-    for(let i in c){
-        document.cookie = /^[^=]+/.exec(c[i])[0]+"=;expires=Thu, 01 Jan 1970 00:00:00 GMT"}}
-
-// async function getPalettes(userId) {
-//     await fetch(`${baseUrl2}user/${userId}`, {
-//         method: "GET",
-//         headers: headers})
-//         .then(response => response.json())
-//         .then(data => createPaletteCards(data))
-//         .catch(err => console.error(err))}
 
 // async function getPaletteById(paletteId){
 //     await fetch(baseUrl2 + paletteId, {

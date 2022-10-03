@@ -90,13 +90,34 @@
             <button id="register-button" type="button" class="btn btn-BW" data-bs-toggle="modal" data-bs-target="#registerModal">REGISTER</button>
         </div>
     </div>
-<!--container for all the palettes, has a text area with SAVE button and below that, palette areas -->
+<!--container for all the 3 palettes (retrieved, saved, active),  -->
     <div class="container-fluid sticky-top my-3 row align-items-start" id="palette-intro-form-container">
 
-<!--   modal for saved palette starts here.  Molly: add the words "modal fade" to class on next line-->
+<!--*** Modal for retrieved palette starts here. Molly: add the words "modal fade" to class on next line-->
+        <div class = "my-1"  id="palette-retrieved-modal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="palette-retrieved-modal-title" aria-hidden="true">
+
+            <div class = "retrievedPalette row my-3 mx-0">
+
+                <div class= "col-8 " id ="retrieved-Palette">
+                    Here is your saved palette. Click on swatches to delete them.
+                </div>
+
+                <div class = "btn-group col-4 float-end">
+                    <button id="update-retrieved-palette-button" type="button" class="btn btn-BW" >UPDATE</button>
+                    <button id="delete-retrieved-palette-button" type="button" class="btn btn-BW" >DELETE</button>
+                </div>
+
+                <!--palette-input is the area where selections appear-->
+                <div id="retrieved-palette-input" class="container-fluid modal-body" >
+                </div>
+            </div>
+        </div>
+
+
+<!--   modal for SAVED palette starts here.  Molly: add the words "modal fade" to class on next line-->
     <div class = "my-1"  id="palette-edit-modal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="palette-edit-modal-title" aria-hidden="true">
 
-        <div class = "savedPalette row my-3">
+        <div class = "savedPalette row my-3 mx-0">
 
             <div class= "col-8 " id ="saved-Palette">
                 Remove swatches from this palette by clicking them.
